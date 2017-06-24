@@ -32,14 +32,21 @@ static bool scale_xbrz(const void* srcData, void* dstData, int width, int height
 static bool scale_hqx(const void* srcData, void* dstData, int width, int height, int scale)
 {
     hqxInit();
-    switch(scale)
+    switch (scale)
     {
-        case 2:
+        case 2: {
             hq2x_32((uint32_t*)srcData, (uint32_t*)dstData, width, height);
-        case 3:
+            break;
+        }
+        case 3: {
             hq3x_32((uint32_t*)srcData, (uint32_t*)dstData, width, height);
+            break;
+        }
         case 4:
+        default: {
             hq4x_32((uint32_t*)srcData, (uint32_t*)dstData, width, height);
+            break;
+        }
     }
     return true;
 }
